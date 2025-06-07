@@ -1,10 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Liste des Patients</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
+  <!--<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js"></script>-->
 </head>
 <body>
-$END$
+<div layout:fragment="content1">
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header text-center fw-bold">
+        Liste des Patients
+      </div>
+      <div class="card-body">
+
+        <!-- Message de succès après suppression -->
+        <div th:if="${successMessage}" class="alert alert-success">
+          <i class="bi bi-check-circle"></i> [[${successMessage}]]
+        </div>
+
+        <!-- Formulaire de recherche -->
+        <form method="get" th:action="@{/user/index}" class="d-flex align-items-center mb-3">
+          <label class="me-2 fw-bold">Rechercher :</label>
+          <input type="text" name="keyword" th:value="${keyword}" class="form-control w-25 me-2" placeholder="Nom du patient...">
+          <button type="submit" class="btn btn-info">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+
+        <!-- Tableau des patients -->
+        <table class="table table-bordered text-center">
+          <thead class="table-light">
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Malade</th>
+            <th>Score</th>
+            <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="p:${patients}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.nom}"></td>
+            <td th:text="${#dates.format(p.dateNaissance, 'dd/MM/yyyy')}"></td>
+            <td th:text="${p.malade} ? 'Oui' : 'Non'"></td>
+            <td th:text="${p.score}"></td>
+            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+              <!-- Bouton de suppression avec modal -->
+              <a class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal' + ${p.id}">
+                <i class="bi bi-trash"></i>
+              </a>
+
+              <!-- Lien pour l'édition -->
+              <a th:href="@{/admin/editPatient(id=${p.id}, page=${currentPage}, keyword=${keyword})}" class="btn btn-success">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+
+              <!-- Modal de confirmation -->
+              <div class="modal fade" th:id="'deleteModal' + ${p.id}" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Confirmation</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      Êtes-vous sûr de vouloir supprimer ce patient ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <a th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}" class="btn btn-danger">
+                        Supprimer
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <ul class="nav nav-pills">
+          <li>
+            <a th:if="${currentPage > 0}" class="btn btn-outline-info ms-1" th:href="@{/user/index(page=${currentPage - 1}, keyword=${keyword})}">
+              <i class="bi bi-arrow-left"></i> Précédent
+            </a>
+          </li>
+          <li th:each="page, status:${pages}">
+            <a th:class="${currentPage==status.index?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+               th:href="@{/user/index(page=${status.index}, keyword=${keyword})}" th:text="${status.index+1}"></a>
+          </li>
+          <li>
+            <a th:if="${currentPage < pages.length - 1}" class="btn btn-outline-info ms-1"
+               th:href="@{/user/index(page=${currentPage + 1}, keyword=${keyword})}">
+              Suivant <i class="bi bi-arrow-right"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
