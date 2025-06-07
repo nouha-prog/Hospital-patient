@@ -198,3 +198,8 @@ MySQL .
 - ![image](https://github.com/user-attachments/assets/8f33e064-4dc3-40d3-be67-fc7a56821c88)
 - Ajouter un patient
 -![image](https://github.com/user-attachments/assets/51088c07-ef4e-4291-bbbd-e8ba478b2247)
+
+## 📚 Liens utiles
+Documentation Spring Boot
+Guide Thymeleaf
+Spring Security Reference
