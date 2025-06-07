@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <title>Accès Refusé</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
+    <!--<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js"></script>-->
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="alert alert-danger text-center m-4">
+        <h2>
+            <i class="bi bi-exclamation-triangle"></i> Vous n'êtes pas autorisé à accéder à cette page !
+        </h2>
+    </div>
+</div>
+</body>
+</html>
