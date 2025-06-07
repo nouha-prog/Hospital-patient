@@ -191,11 +191,10 @@ MySQL .
         - Swagger (si configuré) : `http://localhost:8084/swagger-ui.html`
 ## Resultats
 - base de donnees 
-- ![img.png](img.png)
+- ![image](https://github.com/user-attachments/assets/c567b2a5-1d56-45ab-9faa-3c74b9905ad2)
 - Login
-- ![img_1.png](img_1.png)
+- ![image](https://github.com/user-attachments/assets/d76de77e-91fa-418a-af5f-3d65007ed5e0)
 - liste des patients
-- ![img_2.png](img_2.png)
+- ![image](https://github.com/user-attachments/assets/8f33e064-4dc3-40d3-be67-fc7a56821c88)
 - Ajouter un patient
-- ![img_3.png](img_3.png)
-- 
+-![image](https://github.com/user-attachments/assets/51088c07-ef4e-4291-bbbd-e8ba478b2247)
