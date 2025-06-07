@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Authentification</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
 </head>
-<body>
-
+<body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+<div class="card shadow-lg p-3 rounded" style="max-width: 400px; width: 100%;">
+  <div class="card-header text-center fw-bold">Connexion</div>
+  <div class="card-body">
+    <form method="post" th:action="@{/login}">
+      <div class="mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="username" placeholder="Entrez votre nom" name="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" name="password" required>
+      </div>
+      <div class="mb-3 form-check">
+        <input class="form-check-input" type="checkbox" id="remember-me" name="remember-me">
+        <label class="form-check-label" for="remember-me">Se souvenir de moi</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
