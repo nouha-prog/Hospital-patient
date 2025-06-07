@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Form Patients</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
-$END$
+<div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="row justify-content-center my-5">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4><i class="bi bi-person-plus"></i> Ajouter un Patient</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" th:action="@{save}">
+                            <div class="mb-3">
+                                <label class="form-label">Nom</label>
+                                <input class="form-control" type="text" name="nom" th:value="${patient.nom}" required>
+                                <span class="text-danger small" th:errors="${patient.nom}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date de Naissance</label>
+                                <input class="form-control" type="date" name="dateNaissance" th:value="${patient.dateNaissance}" required>
+                                <span class="text-danger small" th:errors="${patient.dateNaissance}"></span>
+                            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
