@@ -27,7 +27,19 @@
                                 <input class="form-control" type="date" name="dateNaissance" th:value="${patient.dateNaissance}" required>
                                 <span class="text-danger small" th:errors="${patient.dateNaissance}"></span>
                             </div>
-
+                            <div class="mb-3 form-check">
+                                <input class="form-check-input" type="checkbox" name="malade" th:checked="${patient.malade}">
+                                <label class="form-check-label">Malade</label>
+                                <span class="text-danger small d-block" th:errors="${patient.malade}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Score</label>
+                                <input class="form-control" type="number" name="score" th:value="${patient.score}" required>
+                                <span class="text-danger small" th:errors="${patient.score}"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
